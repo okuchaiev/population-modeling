@@ -37,7 +37,6 @@ npm test
 ```
 
 ## Screenshot
-
 ![alt text](image.png)
 
 ## Notes
