@@ -1,0 +1,244 @@
+:root {
+  --bg-start: #f3efe0;
+  --bg-end: #d8e8ef;
+  --panel: #fffdf7;
+  --ink: #162330;
+  --muted: #4f5f6d;
+  --accent: #176a80;
+  --accent-strong: #114f62;
+  --highlight: #dc5b47;
+  --border: #b7cad4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: linear-gradient(130deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.hero {
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 253, 247, 0.9);
+}
+
+.hero h1 {
+  font-size: clamp(1.4rem, 2.3vw, 2.3rem);
+  margin-bottom: 0.2rem;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(460px, 2fr) minmax(320px, 1fr);
+  gap: 1rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(14, 31, 38, 0.08);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.panel-header span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+#world-map {
+  width: 100%;
+  min-height: 420px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(23, 106, 128, 0.08), transparent 45%),
+    radial-gradient(circle at 82% 74%, rgba(220, 91, 71, 0.08), transparent 45%),
+    #e8eff2;
+  overflow: hidden;
+}
+
+.map-country {
+  fill: #cfd8de;
+  stroke: #6f808d;
+  stroke-width: 0.45;
+  transition: fill 120ms ease;
+  cursor: pointer;
+}
+
+.map-country:hover {
+  fill: #8ca9b6;
+}
+
+.map-country.selected {
+  fill: var(--highlight);
+  stroke: #8f241b;
+  stroke-width: 0.85;
+}
+
+.crimea-overlay {
+  fill: #cfd8de;
+  stroke: none;
+  cursor: pointer;
+}
+
+.crimea-overlay.selected {
+  fill: var(--highlight);
+  stroke: none;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.field input {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  border-radius: 8px;
+  border: 1px solid #a8bcc8;
+  padding: 0.45rem 0.55rem;
+  background: #fcffff;
+}
+
+.field input[readonly] {
+  background: #edf5f8;
+  color: #1d2d3a;
+  font-weight: 600;
+}
+
+.age-section {
+  border-top: 1px dashed var(--border);
+  padding-top: 0.7rem;
+}
+
+.chart-wrap {
+  width: 100%;
+  border: 1px solid #c2d2da;
+  border-radius: 10px;
+  background: #f9fcfd;
+  margin-top: 0.45rem;
+  overflow: hidden;
+}
+
+.age-wrap {
+  height: 240px;
+}
+
+.result-wrap {
+  height: 300px;
+}
+
+.chart-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.age-inputs {
+  margin-top: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(132px, 1fr));
+  gap: 0.45rem;
+}
+
+.age-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.age-item input {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  border: 1px solid #a9bdc9;
+  border-radius: 6px;
+  padding: 0.26rem 0.34rem;
+  background: #fff;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+#run-button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  font-weight: 700;
+  color: #f7fbff;
+  background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+  cursor: pointer;
+}
+
+#run-button:hover {
+  filter: brightness(1.05);
+}
+
+.result-panel {
+  margin-top: 1rem;
+}
+
+.footnote {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  #world-map {
+    min-height: 330px;
+  }
+
+  .age-inputs {
+    grid-template-columns: 1fr;
+  }
+}

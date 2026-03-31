@@ -1,0 +1,7 @@
+{
+  "name": "population-modeling",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}

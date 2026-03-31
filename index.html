@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Population Evolution Simulator</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./vendor/d3.min.js" defer></script>
+    <script src="./vendor/topojson-client.min.js" defer></script>
+    <script src="./vendor/chart.umd.min.js" defer></script>
+    <script src="./vendor/chartjs-plugin-dragdata.min.js" defer></script>
+    <script src="./data/countries-110m.js" defer></script>
+    <script src="./simulation-logic.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Population Evolution Simulator</h1>
+      <p>
+        Configure a country-level demographic profile, run a stochastic simulation of births, aging,
+        and deaths, and inspect how total population evolves over time.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel map-panel">
+        <div class="panel-header">
+          <h2>World Political Map</h2>
+          <span id="map-status">Loading local map data...</span>
+        </div>
+        <div id="world-map" aria-label="World political map"></div>
+      </section>
+
+      <aside class="panel control-panel">
+        <div class="panel-header">
+          <h2 id="selected-country">World Total</h2>
+        </div>
+
+        <label class="field">
+          <span>Average children per woman</span>
+          <input id="fertility-input" type="number" min="0" max="10" step="0.1" value="2.2" />
+        </label>
+
+        <label class="field">
+          <span>Average life expectancy (years)</span>
+          <input id="life-input" type="number" min="20" max="120" step="0.1" value="73.3" />
+        </label>
+
+        <label class="field">
+          <span>Female share of population</span>
+          <input id="female-share-input" type="number" min="0" max="1" step="0.01" value="0.50" />
+        </label>
+
+        <label class="field">
+          <span>Years into the future</span>
+          <input id="years-input" type="number" min="1" max="300" step="1" value="80" />
+        </label>
+
+        <label class="field">
+          <span>Total population (sum of age groups)</span>
+          <input id="total-population-input" type="text" value="8,161,972,573" readonly />
+        </label>
+
+        <section class="age-section">
+          <h3>Adjustable Age Distribution (Today)</h3>
+          <p class="hint">Drag bars directly, or edit values below (people per age bucket).</p>
+          <div class="chart-wrap age-wrap">
+            <canvas id="age-chart"></canvas>
+          </div>
+          <div id="age-inputs" class="age-inputs"></div>
+        </section>
+
+        <button id="run-button" type="button">Run Simulation</button>
+        <p id="run-status" class="hint"></p>
+        <p class="hint">Defaults: UN World Population Prospects 2024 data for 173 countries. Gray territories lack reliable data.</p>
+      </aside>
+    </main>
+
+    <section class="panel result-panel">
+      <div class="panel-header">
+        <h2>Population Projection</h2>
+      </div>
+      <div class="chart-wrap result-wrap">
+        <canvas id="result-chart"></canvas>
+      </div>
+    </section>
+
+    <footer class="footnote">
+      Local map source is packaged in this project. Taiwan is separate, and Crimea is rendered as
+      part of Ukraine. Demographics for 173 countries from UN World Population Prospects 2024
+      Revision (Medium variant). Taiwan data from CIA World Factbook / World Population Review.
+    </footer>
+  </body>
+</html>
