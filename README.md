@@ -11,6 +11,7 @@ Interactive browser app for country-level population simulations.
   - Average life expectancy.
   - Adjustable age-distribution bar plot (drag bars or edit numeric values).
   - Simulation horizon in years.
+- Pre-loaded with default data found on the Internet.
 - Stochastic simulation of births, aging, and deaths.
 - Output chart of total population over time.
 
@@ -18,11 +19,10 @@ Interactive browser app for country-level population simulations.
 
 Everything needed is bundled locally (no runtime internet required). You can:
 
-1. Open `/Users/okuchaiev/repos/population-modeling/index.html` directly in a browser, or
+1. Open `index.html` directly in a browser, or
 2. Serve it locally:
 
 ```bash
-cd /Users/okuchaiev/repos/population-modeling
 python3 -m http.server 8000
 ```
 
@@ -33,17 +33,17 @@ Then open [http://localhost:8000](http://localhost:8000).
 Run unit tests for simulation logic:
 
 ```bash
-cd /Users/okuchaiev/repos/population-modeling
 npm test
 ```
+
+## Screenshot
+
+![alt text](image.png)
 
 ## Notes
 
 - Map boundaries come from `world-atlas` data included under `data/`.
-- Crimea is explicitly rendered as part of Ukraine in the app map layer.
-- Startup defaults are preloaded for `World Total` and these countries:
-  - `United States of America`, `Canada`, `China`, `India`, `Ukraine`, `Russia`, `France`,
-    `Germany`, `Italy`, `Portugal`, `Spain`, `Mexico`, `Brazil`, `Chile`.
+- Startup defaults are preloaded for `World Total` and most countries.
 - Data source is World Bank API indicators:
   - `SP.POP.TOTL` (world population, 2024),
   - `SP.DYN.TFRT.IN` (fertility rate, 2023),
